@@ -27,7 +27,7 @@ dataSource.products = {
           cappuccino: {label: 'Cappuccino', price: 1},
           espresso: {label: 'Espresso', price: 1},
           macchiato : {label: 'Macchiato ', price: 1},
-        },
+        },b
       },
     },
   },
