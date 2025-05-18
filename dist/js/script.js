@@ -53,13 +53,58 @@ const select = {
   };
 
   class Product {
-    constructor() {
+    constructor(id, data) {
       const thisProduct = this;
+      thisProduct.id = id;
+      thisProduct.data = data;
+      thisProduct.renderInMenu();
+      thisProduct.initAccordion();
+      console.log('id, data', id, data);
+    } 
 
-      console.log('new Product:', thisProduct);
+    renderInMenu() {
+      const thisProduct = this;
+      const generatedHTML = templates.menuProduct(thisProduct.data);
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+      const menuContainer = document.getElementById('product-list');
+      menuContainer.appendChild(thisProduct.element);
+    }
+
+    initAccordion() {
+      const thisProduct = this;
+      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      clickableTrigger.addEventListener('click', function(event) {
+        event.preventDefault(); 
+        const products = document.querySelectorAll('.product');
+        for (let product of products) {
+          if(product.classList.contains(classNames.menuProduct.wrapperActive) !== thisProduct.element) {
+            product.classList.remove(classNames.menuProduct.wrapperActive);
+          }
+        }
+        thisProduct.element.classList.add(classNames.menuProduct.wrapperActive);
+      })
+
+
+
     }
   }
   const app = {
+    initMenu: function() {
+      const thisApp = this; 
+
+      console.log('thisApp.data:', thisApp.data);
+
+      for (let productData in thisApp.data.products) {
+        new Product(productData, thisApp.data.products[productData]);
+      }
+    },
+
+    initData: function() {
+      const thisApp = this;
+
+      thisApp.data = dataSource;
+    },
+
     init: function(){
       const thisApp = this;
       console.log('*** App starting ***');
@@ -67,6 +112,9 @@ const select = {
       console.log('classNames:', classNames);
       console.log('settings:', settings);
       console.log('templates:', templates);
+
+      thisApp.initData();
+      thisApp.initMenu(); 
     },
   };
 
