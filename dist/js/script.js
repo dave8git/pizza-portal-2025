@@ -61,7 +61,6 @@ const select = {
       thisProduct.initAccordion();
       console.log('id, data', id, data);
     } 
-
     renderInMenu() {
       const thisProduct = this;
       const generatedHTML = templates.menuProduct(thisProduct.data);
@@ -69,7 +68,6 @@ const select = {
       const menuContainer = document.getElementById('product-list');
       menuContainer.appendChild(thisProduct.element);
     }
-
     initAccordion() {
       const thisProduct = this;
       const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
@@ -77,17 +75,15 @@ const select = {
         event.preventDefault(); 
         const products = document.querySelectorAll('.product');
         for (let product of products) {
-          if(product.classList.contains(classNames.menuProduct.wrapperActive) !== thisProduct.element) {
+          if(product !== thisProduct.element) {
             product.classList.remove(classNames.menuProduct.wrapperActive);
           }
         }
-        thisProduct.element.classList.add(classNames.menuProduct.wrapperActive);
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
       })
-
-
-
     }
   }
+  
   const app = {
     initMenu: function() {
       const thisApp = this; 
