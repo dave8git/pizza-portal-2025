@@ -58,7 +58,10 @@ const select = {
       thisProduct.id = id;
       thisProduct.data = data;
       thisProduct.renderInMenu();
+      thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
       console.log('id, data', id, data);
     } 
     renderInMenu() {
@@ -68,10 +71,17 @@ const select = {
       const menuContainer = document.getElementById('product-list');
       menuContainer.appendChild(thisProduct.element);
     }
+    getElements() {
+      const thisProduct = this;
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+    }
     initAccordion() {
       const thisProduct = this;
-      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-      clickableTrigger.addEventListener('click', function(event) {
+      thisProduct.accordionTrigger.addEventListener('click', function(event) {
         event.preventDefault(); 
         const products = document.querySelectorAll('.product');
         for (let product of products) {
@@ -82,8 +92,18 @@ const select = {
         thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
       })
     }
+    initOrderForm() {
+      const thisProduct = this;
+
+      console.log('initOrderForm');
+    }
+    processOrder() {
+      const thisProduct = this; 
+
+      console.log('processOrder');
+    }
   }
-  
+
   const app = {
     initMenu: function() {
       const thisApp = this; 
