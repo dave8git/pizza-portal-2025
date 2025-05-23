@@ -100,17 +100,18 @@ const select = {
     }
     getElements() {
       const thisProduct = this;
-      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
-      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
-      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
-      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+      thisProduct.dom = {};
+      thisProduct.dom.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.dom.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.dom.form.querySelectorAll(select.all.formInputs);
+      thisProduct.dom.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.dom.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.dom.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      thisProduct.dom.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     }
     initAccordion() {
       const thisProduct = this;
-      thisProduct.accordionTrigger.addEventListener('click', function(event) {
+      thisProduct.dom.accordionTrigger.addEventListener('click', function(event) {
         event.preventDefault(); 
         const products = document.querySelectorAll('.product');
         for (let product of products) {
@@ -123,7 +124,7 @@ const select = {
     }
     initOrderForm() {
       const thisProduct = this;
-      thisProduct.form.addEventListener('submit', function(event) {
+      thisProduct.dom.form.addEventListener('submit', function(event) {
         event.preventDefault();
         thisProduct.processOrder(); 
       });
@@ -134,7 +135,7 @@ const select = {
         });
       }
 
-      thisProduct.cartButton.addEventListener('click', function(event){
+      thisProduct.dom.cartButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder(); 
       })
@@ -143,7 +144,7 @@ const select = {
     processOrder() {
       const thisProduct = this; 
       // convert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
-      const formData = utils.serializeFormToObject(thisProduct.form);
+      const formData = utils.serializeFormToObject(thisProduct.dom.form);
       // set price to default price
       let price = thisProduct.data.price;
       // for every category (param)...
@@ -157,7 +158,7 @@ const select = {
           const optionPrice = option.price;
           const optionSelected = formData[paramId].includes(optionId);
           const optionDefault = option['default'];
-          const foundPicture = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
+          const foundPicture = thisProduct.dom.imageWrapper.querySelector(`.${paramId}-${optionId}`);
           if(optionSelected && !optionDefault) {
              price += optionPrice;
           } else if (!optionSelected && optionDefault) {
@@ -175,13 +176,13 @@ const select = {
       /* multiply price by amount */
       price *= thisProduct.amountWidget.value;
       // update calculated price in the HTML
-      thisProduct.priceElem.innerHTML = price;
+      thisProduct.dom.priceElem.innerHTML = price;
     }
     initAmountWidget() {
       const thisProduct = this;
 
-      thisProduct.amountWidgetElem.addEventListener('updated', () => {thisProduct.processOrder()});
-      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.dom.amountWidgetElem.addEventListener('updated', () => {thisProduct.processOrder()});
+      thisProduct.amountWidget = new AmountWidget(thisProduct.dom.amountWidgetElem);
     }
   }
 
@@ -235,6 +236,26 @@ const select = {
 
     const event = new Event('updated');
     thisWidget.element.dispatchEvent(event);
+  }
+}
+
+class Cart{
+  constructor(element) {
+    const thisCart = this;
+
+    thisCart.products = [];
+
+    thisCart.getElements(element);
+
+    console.log('new Cart', thisCart);
+  }
+
+  getElements(element) {
+    const thisCart = this;
+
+    thisCart.dom = {};
+
+    thisCart.dom.wrapper = element;
   }
 }
 
