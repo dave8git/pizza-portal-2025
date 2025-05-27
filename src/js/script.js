@@ -195,14 +195,12 @@ const select = {
     prepareCartProduct() {
       const thisProduct = this;
       const productSummary = {};
-      //console.log('thisProduct.prepareCartProductParams()', thisProduct.prepareCartProductParams());
       productSummary.id = thisProduct.id;
       productSummary.name = thisProduct.data.name;
       productSummary.amount = thisProduct.amountWidget.value;
       productSummary.priceSingle = thisProduct.priceSingle;
       productSummary.price = thisProduct.data.price;
       productSummary.params = thisProduct.prepareCartProductParams();
-      console.log('productSummary', productSummary);
       return productSummary;
     }
     prepareCartProductParams() {
@@ -223,26 +221,10 @@ const select = {
           if(optionSelected) {
             optionObject[optionId] = option.label;
           }
-          // console.log(optionObject[optionId]);
-          // console.log('optionId', optionId);
-          // console.log('option.label', option.label);
-          // console.log('param', param);
-          // console.log('paramId', paramId);
-          // console.log('optionId', optionId);
-          // console.log('option', option);
-          //console.log('optionObject internal', optionObject);
-          // console.log('optionObject', optionObject);
           returnObject[paramId].options = optionObject;
         }
-
-        
-        
       }
-      //returnObject['options'] = optionObject;
-      //console.log('optionObject', optionObject);
-      //console.log('returnObject', returnObject);
       return returnObject;
-     
     }
   }
 
@@ -252,14 +234,11 @@ const select = {
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value !== '' ? thisWidget.input.value : settings.amountWidget.defaultValue);
       thisWidget.initActions();
-      // console.log('AmountWidget:', thisWidget);
-      // console.log('constructor arguments:', element);
     }
     getElements(element){
       const thisWidget = this;
       thisWidget.element = element;
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
-      // console.log('thisWidget.input', thisWidget.input);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
@@ -305,8 +284,6 @@ class Cart{
     thisCart.products = [];
     thisCart.getElements(element);
     thisCart.initActions();
-
-    console.log('new Cart', thisCart);
   }
 
   getElements(element) {
@@ -327,15 +304,10 @@ class Cart{
 
   add(menuProduct) {
     const thisCart = this;
-    console.log('menuProduct', menuProduct);
     const generatedHTML = templates.cartProduct(menuProduct);
     thisCart.element = utils.createDOMFromHTML(generatedHTML);
-    console.log('thisCart.element', thisCart.element);
     const cartContainer = document.querySelector(select.cart.productList);
-    console.log('cartContainer', cartContainer);
     cartContainer.appendChild(thisCart.element);
-    
-    console.log('adding product', menuProduct);
   }
 }
 
