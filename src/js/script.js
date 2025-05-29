@@ -183,9 +183,8 @@ const select = {
     }
     initAmountWidget() {
       const thisProduct = this;
-
-      thisProduct.dom.amountWidgetElem.addEventListener('updated', () => {thisProduct.processOrder()});
       thisProduct.amountWidget = new AmountWidget(thisProduct.dom.amountWidgetElem);
+      thisProduct.dom.amountWidgetElem.addEventListener('updated', () => {thisProduct.processOrder()});
     }
     addToCart() {
       const thisProduct = this;
@@ -272,8 +271,11 @@ const select = {
   }
   announce(){
     const thisWidget = this;
-
-    const event = new Event('updated');
+    console.log('announce ruszyło');
+    //const event = new Event('updated');
+    const event = new CustomEvent('updated', {
+      bubbles: true
+    });
     thisWidget.element.dispatchEvent(event);
   }
 }
@@ -292,6 +294,10 @@ class Cart{
     thisCart.dom.wrapper = element;
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+    thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
+    thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
+    thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelector(select.cart.totalPrice);
+    thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
   }
 
   initActions() {
@@ -299,6 +305,10 @@ class Cart{
     thisCart.dom.toggleTrigger.addEventListener('click', function(event) {
       event.preventDefault();
       thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+    });
+    thisCart.dom.productList.addEventListener('updated', function() {
+      console.log('updated w Cart ruszyło');
+      thisCart.update();
     });
   }
 
@@ -315,7 +325,7 @@ class Cart{
 
   update() {
     const thisCart = this;
-
+    console.log('update w cart ruszyło');
     const deliveryFee = settings.cart.defaultDeliveryFee;
     let totalNumber = 0;
     let subtotalPrice = 0;
@@ -326,7 +336,15 @@ class Cart{
     }
   
     thisCart.totalPrice = totalNumber === 0 ? 0 : subtotalPrice + deliveryFee;
-  
+    
+    thisCart.dom.totalNumber.innerHTML = totalNumber;
+    thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
+    thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
+    if(totalNumber > 0) {
+      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+    } else {
+      thisCart.dom.deliveryFee.innerHTML = 0;
+    }
     console.log('deliveryFee:', deliveryFee);
     console.log('totalNumber:', totalNumber);
     console.log('subtotalPrice:', subtotalPrice);
