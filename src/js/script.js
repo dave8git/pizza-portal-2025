@@ -177,7 +177,7 @@ const select = {
       /* multiply price by amount */
       // price *= thisProduct.amountWidget.value;
       // thisProduct.priceSingle = price;
-      thisProduct.priceSingle = price / thisProduct.amountWidget.value;
+      thisProduct.priceSingle = price * thisProduct.amountWidget.value;
       thisProduct.dom.priceElem.innerHTML = price;
       // update calculated price in the HTML
       thisProduct.dom.priceElem.innerHTML = price;
@@ -300,7 +300,8 @@ class Cart{
     thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
     thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
-    thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelector(select.cart.totalPrice);
+    thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
+    console.log('thisCart.dom.totalPrice', thisCart.dom.totalPrice);
     thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
   }
 
@@ -345,7 +346,7 @@ class Cart{
     
     thisCart.dom.totalNumber.innerHTML = totalNumber;
     thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
-    thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
+    thisCart.dom.totalPrice.forEach(elem => elem.innerHTML = thisCart.totalPrice);
     if(totalNumber > 0) {
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
     } else {
