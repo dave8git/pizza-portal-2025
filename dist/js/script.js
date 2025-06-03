@@ -340,9 +340,31 @@ class Cart{
     thisCart.payload = {
       address: thisCart.dom.address.value,
       phone: thisCart.dom.phone.value,
+      totalPrice: thisCart.totalPrice,
+      totalNumber: thisCart.totalNumber,
+      subtotalPrice: thisCart.subtotalPrice,
+      deliveryFee: thisCart.deliveryFee,
+      products: []
     }
 
+    for(let prod of thisCart.products) {
+      thisCart.payload.products.push(prod.getData());
+    }
     console.log('payload', thisCart.payload);
+
+    const options = { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(thisCart.payload)
+    }
+    fetch(url, options)
+      .then(function(response){
+        return response.json();
+      }).then(function(parsedResponse){
+        console.log('parsedResponse', parsedResponse);
+      });
   }
   add(menuProduct) {
     const thisCart = this;
@@ -356,22 +378,22 @@ class Cart{
 
   update() {
     const thisCart = this;
-    const deliveryFee = settings.cart.defaultDeliveryFee;
-    let totalNumber = 0;
-    let subtotalPrice = 0;
+    thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
+    thisCart.totalNumber = 0;
+    thisCart.subtotalPrice = 0;
   
     for (let product of thisCart.products) {
-      totalNumber += product.amount;
-      subtotalPrice += product.price;
+      thisCart.totalNumber += product.amount;
+      thisCart.subtotalPrice += product.price;
     }
   
-    thisCart.totalPrice = totalNumber === 0 ? 0 : subtotalPrice + deliveryFee;
+    thisCart.totalPrice = thisCart.totalNumber === 0 ? 0 : thisCart.subtotalPrice + thisCart.deliveryFee;
     
-    thisCart.dom.totalNumber.innerHTML = totalNumber;
-    thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
+    thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
+    thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
     thisCart.dom.totalPrice.forEach(elem => elem.innerHTML = thisCart.totalPrice);
-    if(totalNumber > 0) {
-      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+    if(thisCart.totalNumber > 0) {
+      thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
     } else {
       thisCart.dom.deliveryFee.innerHTML = 0;
     }
@@ -411,6 +433,19 @@ class CartProduct {
       event.preventDefault();
       thisCartProduct.remove();
     });
+  }
+
+  getData() {
+    const thisCartProduct = this;
+    const payload = {
+      id: thisCartProduct.id,
+      amount: thisCartProduct.amount,
+      price: thisCartProduct.price,
+      priceSingle: thisCartProduct.priceSingle,
+      name: thisCartProduct.name,
+      params: thisCartProduct.params
+    }
+    return payload;
   }
 
   initAmountWidget() {
