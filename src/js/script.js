@@ -472,7 +472,7 @@ class CartProduct {
   }
 }
 
-  const app = {
+  const app = { // now divide into subclasses
     initMenu: function() {
       const thisApp = this; 
 
