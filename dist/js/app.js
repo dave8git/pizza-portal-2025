@@ -1,4 +1,6 @@
-import { settings, select } from "./settings";
+import { settings, select, classNames, templates } from "./settings";
+import Product from "./components/Product";
+import Cart from "./components/Cart";
 
 const app = { // now divide into subclasses
     initMenu: function() {
@@ -37,6 +39,12 @@ const app = { // now divide into subclasses
 
       const cartElem = document.querySelector(select.containerOf.cart);
       thisApp.cart = new Cart(cartElem);
+
+      thisApp.productList = document.querySelector(select.containerOf.menu);
+
+      thisApp.productList.addEventListener('add-to-cart', function(event) {
+        app.cart.add(event.detail.product);
+      });
     },
 
     init: function(){
