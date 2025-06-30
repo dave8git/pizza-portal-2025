@@ -1,4 +1,6 @@
-
+import { templates, select, classNames } from '../settings.js';
+import { utils } from '../utils.js';
+import AmountWidget from './AmountWidget.js';
 
 class Product {
     constructor(id, data) {
@@ -28,7 +30,7 @@ class Product {
         thisProduct.dom.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
         thisProduct.dom.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
         thisProduct.dom.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-        thisProduct.dom.amountWidgetElem = thisProduct.element.qu erySelector(select.menuProduct.amountWidget);
+        thisProduct.dom.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     }
     initAccordion() {
         const thisProduct = this;
@@ -116,7 +118,7 @@ class Product {
         const event = new CustomEvent('add-to-cart', {
             bubbles: true,
             detail: {
-                product: thisProduct,
+                product: productSummary,
             }
         });
 
