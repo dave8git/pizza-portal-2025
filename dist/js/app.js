@@ -3,6 +3,18 @@ import Product from "./components/Product.js";
 import Cart from "./components/Cart.js";
 
 const app = { // now divide into subclasses
+    initPages: function() {
+      const thisApp = this;
+
+      thisApp.pages = document.querySelector(select.containerOf.pages).children;
+
+      thisApp.activatePage(thisApp.pages[0].id);
+    },
+
+    activatePage: function(pageId) {
+      const thisApp = this;
+    },
+
     initMenu: function() {
       const thisApp = this; 
 
@@ -54,7 +66,7 @@ const app = { // now divide into subclasses
       console.log('classNames:', classNames);
       console.log('settings:', settings);
       console.log('templates:', templates);
-
+      thisApp.initPages();
       thisApp.initData();
       thisApp.initCart();
     },
