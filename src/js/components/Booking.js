@@ -9,13 +9,13 @@ class Booking{
         thisBooking.render(thisBooking.element);
         thisBooking.initWidgets();
     }
-    render(element) {
+    render() {
         const thisBooking = this;
         thisBooking.dom = {};
         const generatedHTML = templates.bookingWidget();
-        console.log('generatedHTML', generatedHTML);
+        //console.log('generatedHTML', generatedHTML);
         thisBooking.generatedDOM = utils.createDOMFromHTML(generatedHTML);
-        console.log('thisBooking.generatedDOM', thisBooking.generatedDOM);
+        //console.log('thisBooking.generatedDOM', thisBooking.generatedDOM);
         const bookingContainer = document.querySelector(select.containerOf.booking);
         bookingContainer.appendChild(thisBooking.generatedDOM);
         thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount);
