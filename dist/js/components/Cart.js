@@ -32,6 +32,7 @@ class Cart{
       thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
     });
     thisCart.dom.productList.addEventListener('updated', function() {
+      console.log('updated');
       thisCart.update();
     });
     thisCart.dom.wrapper.addEventListener('remove', function(event) {
@@ -64,7 +65,6 @@ class Cart{
     for(let prod of thisCart.products) {
       thisCart.payload.products.push(prod.getData());
     }
-    console.log('payload', thisCart.payload);
 
     const options = { 
         method: 'POST',
@@ -100,7 +100,6 @@ class Cart{
       thisCart.totalNumber += product.amount;
       thisCart.subtotalPrice += product.price;
     }
-  
     thisCart.totalPrice = thisCart.totalNumber === 0 ? 0 : thisCart.subtotalPrice + thisCart.deliveryFee;
     
     thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;

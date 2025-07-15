@@ -67,6 +67,7 @@ class Product {
 
     processOrder() {
         const thisProduct = this;
+        console.log('process order');
         // convert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
         const formData = utils.serializeFormToObject(thisProduct.dom.form);
         // set price to default price
@@ -99,11 +100,15 @@ class Product {
         }
         /* multiply price by amount */
         // price *= thisProduct.amountWidget.value;
-        // thisProduct.priceSingle = price;
-        thisProduct.priceSingle = price * thisProduct.amountWidget.value;
-        thisProduct.dom.priceElem.innerHTML = price;
+        thisProduct.priceSingle = price;
+        //thisProduct.priceSingle = price * thisProduct.amountWidget.value;
+        const totalPrice = price * thisProduct.amountWidget.value;
+        //thisProduct.dom.priceElem.innerHTML = price;
         // update calculated price in the HTML
-        thisProduct.dom.priceElem.innerHTML = price;
+        thisProduct.dom.priceElem.innerHTML = totalPrice;
+        console.log('thisProduct.priceSingle', thisProduct.priceSingle);
+        console.log('price', price);
+
     }
     initAmountWidget() {
         const thisProduct = this;
