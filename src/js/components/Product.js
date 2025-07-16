@@ -103,7 +103,7 @@ class Product {
         thisProduct.priceSingle = price;
         //thisProduct.priceSingle = price * thisProduct.amountWidget.value;
         const totalPrice = price * thisProduct.amountWidget.value;
-        //thisProduct.dom.priceElem.innerHTML = price;
+        //thisProduct.dom.priceElem.innerHTML = price;b
         // update calculated price in the HTML
         thisProduct.dom.priceElem.innerHTML = totalPrice;
         console.log('thisProduct.priceSingle', thisProduct.priceSingle);

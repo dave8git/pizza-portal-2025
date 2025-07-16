@@ -25,7 +25,6 @@
     renderValue() {
       const thisWidget = this;
       thisWidget.dom.input.value = thisWidget.value;
-      console.log('thisWidget.dom.input.value', thisWidget.dom.input.value);
     }
 
     initActions(){
