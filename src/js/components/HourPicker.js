@@ -21,8 +21,8 @@ class HourPicker extends BaseWidget {
       return;
     }
 
-    thisWidget.minHour = settings.hours.open;   // e.g. 12
-    thisWidget.maxHour = settings.hours.close;  // e.g. 24
+    thisWidget.minHour = settings.hours.open;
+    thisWidget.maxHour = settings.hours.close;
 
     noUiSlider.create(slider, {
       range: {
