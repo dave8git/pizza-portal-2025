@@ -14,7 +14,6 @@ class HourPicker extends BaseWidget {
 
   initPlugin() {
     const thisWidget = this;
-
     const slider = thisWidget.dom.input;
     if (!slider) {
       console.error('HourPicker: input (slider) element not found');
@@ -34,21 +33,23 @@ class HourPicker extends BaseWidget {
       connect: [true, false],
       tooltips: true,
       format: {
-        to: value => value.toFixed(2),
-        from: value => parseFloat(value),
+        to: value => utils.numberToHour(value),
+        from: value => value,
       },
     });
 
     slider.noUiSlider.on('update', function (values, handle) {
+      console.log('values', values);
+      console.log('handle', handle);
       thisWidget.value = values[handle];
-      console.log('Slider updated value:', thisWidget.value);
     });
 
     thisWidget.dom.input = slider;
   }
 
   parseValue(value) {
-    return utils.numberToHour(value); // Example: converts 12.5 → "12:30"
+    //return utils.numberToHour(value); // Example: converts 12.5 → "12:30"
+    return parseFloat(value);
   }
 
   isValid() {
@@ -56,8 +57,11 @@ class HourPicker extends BaseWidget {
   }
 
   renderValue() {
-    const thisWidget = this;
-    thisWidget.dom.output.innerHTML = thisWidget.value;
+     const thisWidget = this;
+    if (thisWidget.dom.output) {
+      thisWidget.dom.output.innerHTML = utils.numberToHour(thisWidget.value); // show "12:30"
+      // console.log(thisWidget.value);
+    }
   }
 }
 

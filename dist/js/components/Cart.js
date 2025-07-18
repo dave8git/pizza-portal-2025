@@ -32,7 +32,6 @@ class Cart{
       thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
     });
     thisCart.dom.productList.addEventListener('updated', function() {
-      console.log('updated');
       thisCart.update();
     });
     thisCart.dom.wrapper.addEventListener('remove', function(event) {

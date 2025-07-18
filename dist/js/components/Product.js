@@ -67,7 +67,6 @@ class Product {
 
     processOrder() {
         const thisProduct = this;
-        console.log('process order');
         // convert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
         const formData = utils.serializeFormToObject(thisProduct.dom.form);
         // set price to default price
@@ -106,9 +105,6 @@ class Product {
         //thisProduct.dom.priceElem.innerHTML = price;b
         // update calculated price in the HTML
         thisProduct.dom.priceElem.innerHTML = totalPrice;
-        console.log('thisProduct.priceSingle', thisProduct.priceSingle);
-        console.log('price', price);
-
     }
     initAmountWidget() {
         const thisProduct = this;

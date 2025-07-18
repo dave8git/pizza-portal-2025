@@ -85,8 +85,6 @@ const app = { // now divide into subclasses
           /* execute initMenu method */
           thisApp.initMenu();
         });
-
-        console.log('thisApp.data', JSON.stringify(thisApp.data));
     },
 
     initCart: function() {
@@ -105,17 +103,16 @@ const app = { // now divide into subclasses
     initBooking: function() {
       const thisApp = this;
       const containerBooking = document.querySelector(select.containerOf.booking);
-      console.log('containerBooking', containerBooking);
       thisApp.booking = new Booking(containerBooking);
     },
 
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      // console.log('*** App starting ***');
+      // console.log('thisApp:', thisApp);
+      // console.log('classNames:', classNames);
+      // console.log('settings:', settings);
+      // console.log('templates:', templates);
       thisApp.initPages();
       thisApp.initData();
       thisApp.initCart();
