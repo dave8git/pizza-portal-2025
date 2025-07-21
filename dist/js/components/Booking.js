@@ -87,7 +87,7 @@ class Booking {
                 }
             }
         }
-        console.log('thisBooking.booked', thisBooking.booked);
+    
         thisBooking.updateDOM();
     }
 
@@ -110,20 +110,41 @@ class Booking {
         }
     }
 
-    makeSelected(table) {
+    makeSelected(tableElement) {
         const thisBooking = this;
-        thisBooking.selectedTable = table.table;
-        const selectedTableElement = thisBooking.element.querySelector(`[data-table="${table.table}"]`);
-        selectedTableElement.classList.add('selected');
+        const tableNumber = tableElement.dataset.table;
+
+        if (tableElement.classList.contains(classNames.booking.tableBooked)) {
+            return;
+        }
+
+        const isSelected = tableElement.classList.contains('selected');
+        
+        // thisBooking.dom.tables.forEach((table) => {
+        //     table.classList.remove('selected');
+        // });
+        thisBooking.clearSelected();
+
+        if(!isSelected) {
+            tableElement.classList.add('selected');
+            thisBooking.dom.selectedTable = tableNumber;
+        } else {
+            thisBooking.dom.selectedTable = '';
+        }
     }
 
-    
+    clearSelected() {
+        const thisBooking = this;
+         thisBooking.dom.tables.forEach((table) => {
+            table.classList.remove('selected');
+        });
+    }
     updateDOM() {
         const thisBooking = this;
         thisBooking.date = thisBooking.datePicker.value;
         thisBooking.hour = thisBooking.hourPicker.value;
         let allAvailable = false;
-
+       
         if (
             typeof thisBooking.booked[thisBooking.date] == 'undefined'
             ||
@@ -187,11 +208,12 @@ class Booking {
         });
 
         thisBooking.wrapper.addEventListener('updated', function(){
+            thisBooking.clearSelected();
             thisBooking.updateDOM();
         });
         thisBooking.dom.tables.forEach((table) => {
             table.addEventListener('click', () => {
-                thisBooking.makeSelected(table.dataset);
+                thisBooking.makeSelected(table);
             });
         });
     }
