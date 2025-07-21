@@ -7,6 +7,7 @@ import HourPicker from './HourPicker.js';
 class Booking {
     constructor(element) {
         const thisBooking = this;
+        thisBooking.element = element;
         thisBooking.render(element);
         thisBooking.initWidgets();
         thisBooking.getData();
@@ -109,6 +110,14 @@ class Booking {
         }
     }
 
+    makeSelected(table) {
+        const thisBooking = this;
+        thisBooking.selectedTable = table.table;
+        const selectedTableElement = thisBooking.element.querySelector(`[data-table="${table.table}"]`);
+        selectedTableElement.classList.add('selected');
+    }
+
+    
     updateDOM() {
         const thisBooking = this;
         thisBooking.date = thisBooking.datePicker.value;
@@ -156,7 +165,7 @@ class Booking {
         thisBooking.dom.hourPicker = thisBooking.wrapper.querySelector('.slider');
         thisBooking.dom.datePicker = thisBooking.wrapper.querySelector('.date-picker');
         thisBooking.dom.tables = thisBooking.wrapper.querySelectorAll(select.booking.tables);
-
+        console.log('thisBooking.dom.tables', thisBooking.dom.tables);
     }
     initWidgets() {
         const thisBooking = this;
@@ -179,6 +188,11 @@ class Booking {
 
         thisBooking.wrapper.addEventListener('updated', function(){
             thisBooking.updateDOM();
+        });
+        thisBooking.dom.tables.forEach((table) => {
+            table.addEventListener('click', () => {
+                thisBooking.makeSelected(table.dataset);
+            });
         });
     }
 }
