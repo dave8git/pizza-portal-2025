@@ -1,3 +1,4 @@
+/* global noUiSlider */
 import BaseWidget from '../components/BaseWidget.js';
 import { select, settings } from '../settings.js';
 import { utils } from '../utils.js';
@@ -33,23 +34,22 @@ class HourPicker extends BaseWidget {
       connect: [true, false],
       tooltips: true,
       format: {
-        to: value => utils.numberToHour(value),
-        from: value => value,
+        to: value => value.toFixed(2),
+        from: value => parseFloat(value),
       },
     });
 
     slider.noUiSlider.on('update', function (values, handle) {
-      console.log('values', values);
-      console.log('handle', handle);
       thisWidget.value = values[handle];
+      console.log('Slider updated value:', thisWidget.value);
     });
 
     thisWidget.dom.input = slider;
   }
 
   parseValue(value) {
-    //return utils.numberToHour(value); // Example: converts 12.5 → "12:30"
-    return parseFloat(value);
+    return utils.numberToHour(value); // Example: converts 12.5 → "12:30"
+    // return parseFloat(value);
   }
 
   isValid() {

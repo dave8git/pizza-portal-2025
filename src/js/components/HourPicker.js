@@ -1,3 +1,4 @@
+/* global noUiSlider */
 import BaseWidget from '../components/BaseWidget.js';
 import { select, settings } from '../settings.js';
 import { utils } from '../utils.js';
@@ -47,8 +48,8 @@ class HourPicker extends BaseWidget {
   }
 
   parseValue(value) {
-    //return utils.numberToHour(value); // Example: converts 12.5 → "12:30"
-    return parseFloat(value);
+    return utils.numberToHour(value); // Example: converts 12.5 → "12:30"
+    // return parseFloat(value);
   }
 
   isValid() {
