@@ -47,6 +47,7 @@ export const select = {
     submit: 'button[type="submit"]',
     phone: 'input[name="phone"]',
     address: 'input[name="address"]',
+    starters: 'input[name="starter"]',
   },
   nav: {
     links: '.main-nav a',
