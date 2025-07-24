@@ -137,7 +137,7 @@ class Booking {
     updateDOM() {
         const thisBooking = this;
         thisBooking.date = thisBooking.datePicker.value;
-        thisBooking.hour = thisBooking.hourPicker.value;
+        thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
         let allAvailable = false;
         if (
             typeof thisBooking.booked[thisBooking.date] == 'undefined'
@@ -249,10 +249,10 @@ class Booking {
             .then(function (response) {
                 return response.json();
             }).then(function (parsedResponse) {
-                // console.log('parsedResponse', parsedResponse);
-                // thisBooking.makeBooked(thisBooking.payload.date, thisBooking.payload.hour, thisBooking.payload.duration, thisBooking.payload.table);
-                // thisBooking.updateDOM();
-                // thisBooking.clearSelected();
+                console.log('parsedResponse', parsedResponse);
+                thisBooking.makeBooked(thisBooking.payload.date, thisBooking.payload.hour, thisBooking.payload.duration, thisBooking.payload.table);
+                thisBooking.updateDOM();
+                thisBooking.clearSelected();
             });
     }
 
