@@ -99,6 +99,8 @@ class Booking {
 
         const startHour = utils.hourToNumber(hour);
 
+        //const startHour = hour;
+        
         for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
             if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
                 thisBooking.booked[date][hourBlock] = [];
