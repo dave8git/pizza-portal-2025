@@ -59,9 +59,10 @@ utils.queryParams = function(params){
     .join('&');
 };
 utils.numberToHour = function(number){
-  return (Math.floor(number) % 24) + ':' + (number % 1 * 60 + '').padStart(2, '0');
+  const hours = Math.floor(number) % 24;
+  const minutes = Math.round((number % 1) * 60);
+  return hours + ':' + minutes.toString().padStart(2, '0');
 };
-
 utils.hourToNumber = function(hour){
   const parts = hour.split(':');
 

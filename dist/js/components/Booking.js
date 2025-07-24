@@ -40,8 +40,6 @@ class Booking {
             eventsRepeat: settings.db.url + '/' + settings.db.events + '?' + params.eventsRepeat.join('&'),
         };
 
-        console.log('getData params', params);
-        console.log('getData urls ', urls);
         Promise.all([
             fetch(urls.booking),
             fetch(urls.eventsCurrent),
@@ -56,9 +54,6 @@ class Booking {
                 eventsRepeatResponse.json(),
             ]);
         }).then(function ([bookings, eventsCurrent, eventsRepeat]) {
-            console.log(bookings);
-            console.log(eventsCurrent);
-            console.log(eventsRepeat);
             thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
         });
     }
@@ -67,7 +62,6 @@ class Booking {
         const thisBooking = this;
         thisBooking.booked = {};
         for (let item of bookings) {
-            console.log('item', item);
             thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
         }
 
@@ -172,9 +166,7 @@ class Booking {
         thisBooking.dom = {};
         thisBooking.wrapper = element;
         const generatedHTML = templates.bookingWidget();
-        //console.log('generatedHTML', generatedHTML);
         thisBooking.generatedDOM = utils.createDOMFromHTML(generatedHTML);
-        //console.log('thisBooking.generatedDOM', thisBooking.generatedDOM);
         const bookingContainer = document.querySelector(select.containerOf.booking);
         bookingContainer.appendChild(thisBooking.generatedDOM);
         thisBooking.dom.peopleAmount = thisBooking.wrapper.querySelector(select.booking.peopleAmount);
@@ -186,22 +178,6 @@ class Booking {
         thisBooking.dom.address = thisBooking.wrapper.querySelector(select.booking.address);
         thisBooking.dom.starters = thisBooking.wrapper.querySelectorAll(select.booking.starters);
         thisBooking.dom.submitButton = thisBooking.wrapper.querySelector('button');
-        console.log('thisBooking.dom.submitButton', thisBooking.dom.submitButton);
-    
-
-        // thisBooking.dom.starters.forEach((input) => {
-        //     input.addEventListener('change', handleChange);
-        // });
-
-        // const handleChange = (e) => {
-        //     const { value, checked } = e.target;
-        //     console.log('value', value);
-        //     if (checked) {
-        //         thisBooking.payload["starters"].push(value);
-        //     } else {
-        //         thisBooking.payload.starters = thisBooking.payload["starters"].filter((v) => v != value);
-        //     }
-        // };
     }
 
     sendBooking() {
@@ -220,13 +196,6 @@ class Booking {
             }
         });
 
-        console.log('date: thisBooking.datePicker.correctValue', thisBooking.datePicker.correctValue);
-        console.log('hour: thisBooking.hourPicker', thisBooking.hourPicker.value);
-        console.log('table: parseInt(thisBooking.dom.selectedTable) || null,', parseInt(thisBooking.dom.selectedTable) || null);
-        console.log('duration: thisBooking.dom.amountWidgetHours.correctValue,', thisBooking.dom.amountWidgetHours.correctValue);
-        console.log('ppl: thisBooking.dom.amountWidgetPeople.correctValue,', thisBooking.dom.amountWidgetPeople.correctValue);
-        console.log('phone: thisBooking.dom.phone.value,', thisBooking.dom.phone.value);
-        console.log('address: thisBooking.dom.adbbdress.value,', thisBooking.dom.address.value);
         thisBooking.payload = {
             "date": thisBooking.datePicker.correctValue,
             "hour": thisBooking.hourPicker.value,
@@ -238,8 +207,6 @@ class Booking {
             "address": thisBooking.dom.address.value,
         }
 
-
-        // console.log('payload', thisBooking.payload);
         const options = {
             method: 'POST',
             headers: {
@@ -257,10 +224,6 @@ class Booking {
                 thisBooking.clearSelected();
             });
     }
-
-    // prepareBooking() {
-    //     const thisBooking = this;
-    // }
 
     initWidgets() {
         const thisBooking = this;

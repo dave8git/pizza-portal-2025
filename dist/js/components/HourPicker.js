@@ -34,7 +34,7 @@ class HourPicker extends BaseWidget {
       connect: [true, false],
       tooltips: true,
       format: {
-        to: value => value.toFixed(2),
+        to: value =>  utils.numberToHour(value),//value.toFixed(2),
         from: value => parseFloat(value),
       },
     });
@@ -48,7 +48,7 @@ class HourPicker extends BaseWidget {
   }
 
   parseValue(value) {
-    return utils.numberToHour(value); // Example: converts 12.5 → "12:30"
+    return value;
     // return parseFloat(value);
   }
 
