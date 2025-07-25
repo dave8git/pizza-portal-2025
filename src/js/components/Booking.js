@@ -11,6 +11,34 @@ class Booking {
         thisBooking.render(element);
         thisBooking.initWidgets();
         thisBooking.getData();
+        window.bookingInstance = thisBooking;
+    }
+
+    generateSliderColorSegments() {
+        const thisBooking = this;
+        const colors = [];
+
+        const date = thisBooking.date || thisBooking.datePicker?.value || utils.dateToStr(new Date());
+        const booked = thisBooking?.booked[date] || {};
+        const openHour = settings.hours.open;
+        const closeHour = settings.hours.close;
+
+        for (let time = openHour; time < closeHour; time += 0.5) {
+            const bookedTables = booked[time] || [];
+            const count = bookedTables.length;
+
+            let color = '#0f0';
+            if (count === 2) color = '#ff0';
+            else if (count >= 3) color = '#f00';
+
+            const start = ((time - openHour) / (closeHour - openHour)) * 100;
+            const end = ((time + 0.5 - openHour) / (closeHour - openHour)) * 100;
+            colors.push(`${color} ${start}% ${end}%`);
+
+        }
+
+        console.log('Generated colors:', colors.join(', '));
+        return colors.join(', ');
     }
 
     getData() {
@@ -81,8 +109,14 @@ class Booking {
         }
 
         thisBooking.updateDOM();
+        thisBooking.updateSliderBackground();
     }
 
+
+    updateSliderBackground() {
+        const thisBooking = this;
+        thisBooking.hourPicker.updateSliderBackground();
+    }
 
     makeBooked(date, hour, duration, table) {
         const thisBooking = this;
@@ -94,7 +128,7 @@ class Booking {
         const startHour = utils.hourToNumber(hour);
 
         //const startHour = hour;
-        
+
         for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
             if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
                 thisBooking.booked[date][hourBlock] = [];
@@ -159,6 +193,7 @@ class Booking {
                 table.classList.remove(classNames.booking.tableBooked);
             }
         }
+        thisBooking.updateSliderBackground();
     }
 
     render(element) {
@@ -184,13 +219,13 @@ class Booking {
         const thisBooking = this;
         const url = settings.db.url + '/' + settings.db.bookings;
         const starters = [];
-    
+
         thisBooking.dom.starters.forEach((input) => {
-            if(input.checked) {
+            if (input.checked) {
                 starters.push(input.value);
             } else {
                 const index = starters.findIndex(starter => starter.toLowerCase() === input.value.toLowerCase());
-                if(index !== -1) {
+                if (index !== -1) {
                     starters.splice(index, 1);
                 }
             }
