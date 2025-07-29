@@ -10,6 +10,7 @@ class Booking {
         thisBooking.element = element;
         window.bookingInstance = thisBooking;
         thisBooking.booked = {};
+        thisBooking.selectedTables = [];
         thisBooking.render(element);
         thisBooking.initWidgets();
         thisBooking.getData();
@@ -32,7 +33,7 @@ class Booking {
             let color = '#0f0';
             if (count === 2) color = '#ff0'
             else if (count >= 3) color = '#f00'
-            
+
             const partialStart = time - openHour;
             const partialStart2 = closeHour - openHour;
             const start = (partialStart / partialStart2) * 100;
@@ -146,7 +147,8 @@ class Booking {
 
     makeSelected(tableElement) {
         const thisBooking = this;
-        const tableNumber = tableElement.dataset.table;
+        //const tableNumber = tableElement.dataset.table;
+        const tableNumber = parseInt(tableElement.dataset.table);
 
         if (tableElement.classList.contains(classNames.booking.tableBooked)) {
             return;
@@ -154,18 +156,25 @@ class Booking {
 
         const isSelected = tableElement.classList.contains('selected');
 
-        thisBooking.clearSelected();
+        //thisBooking.clearSelected();
 
-        if (!isSelected) {
-            tableElement.classList.add('selected');
-            thisBooking.dom.selectedTable = tableNumber;
+        if (isSelected) {
+            tableElement.classList.remove('selected');
+            //thisBooking.dom.selectedTable = tableNumber;
+            thisBooking.selectedTables = thisBooking.selectedTables.filter(t => t !== tableNumber);
         } else {
-            thisBooking.dom.selectedTable = '';
+            //thisBooking.dom.selectedTable = '';
+            tableElement.classList.add('selected');
+            thisBooking.selectedTables.push(tableNumber);
         }
     }
 
     clearSelected() {
         const thisBooking = this;
+        // thisBooking.dom.tables.forEach((table) => {
+        //     table.classList.remove('selected');
+        // });
+        thisBooking.selectedTables = [];
         thisBooking.dom.tables.forEach((table) => {
             table.classList.remove('selected');
         });
@@ -240,7 +249,8 @@ class Booking {
         thisBooking.payload = {
             "date": thisBooking.datePicker.correctValue,
             "hour": thisBooking.hourPicker.value,
-            "table": parseInt(thisBooking.dom.selectedTable) || null,
+            //"table": parseInt(thisBooking.dom.selectedTable) || null,
+            "table": [...thisBooking.selectedTables],
             "duration": thisBooking.dom.amountWidgetHours.correctValue,
             "ppl": thisBooking.dom.amountWidgetPeople.correctValue,
             "starters": starters,
@@ -260,7 +270,9 @@ class Booking {
                 return response.json();
             }).then(function (parsedResponse) {
                 console.log('parsedResponse', parsedResponse);
-                thisBooking.makeBooked(thisBooking.payload.date, thisBooking.payload.hour, thisBooking.payload.duration, thisBooking.payload.table);
+                thisBooking.selectedTables.forEach(table => {
+                    thisBooking.makeBooked(thisBooking.payload.date, thisBooking.payload.hour, thisBooking.payload.duration, table);
+                });
                 thisBooking.updateDOM();
                 thisBooking.clearSelected();
             });
