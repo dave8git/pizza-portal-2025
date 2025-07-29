@@ -32,7 +32,7 @@ class Booking {
             let color = '#0f0';
             if (count === 2) color = '#ff0'
             else if (count >= 3) color = '#f00'
-
+b
             const partialStart = time - openHour;
             const partialStart2 = closeHour - openHour;
             const start = (partialStart / partialStart2) * 100;

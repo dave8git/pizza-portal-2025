@@ -21,7 +21,6 @@ class HourPicker extends BaseWidget {
     const gradient = bookingInstance.generateSliderColorSegments();
     thisWidget.dom.input.style.background = `linear-gradient(to right, ${gradient})`;
   }
-
   initPlugin() {
     const thisWidget = this;
     const slider = thisWidget.dom.input;
