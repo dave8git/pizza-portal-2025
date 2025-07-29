@@ -13,6 +13,16 @@ class HourPicker extends BaseWidget {
     thisWidget.initPlugin();
   }
 
+  updateSliderBackground() {
+    const thisWidget = this;
+    const bookingInstance = window.bookingInstance;
+    if(!bookingInstance) return;
+    const gradient = bookingInstance.generateSliderColorSegments();
+    console.log('gradient', gradient);
+    console.log('thisWidget.dom.input', thisWidget.dom.input);
+    thisWidget.dom.input.style.background = `linear-gradient(to right, ${gradient})`;
+  }
+
   initPlugin() {
     const thisWidget = this;
     const slider = thisWidget.dom.input;
@@ -45,6 +55,7 @@ class HourPicker extends BaseWidget {
     });
 
     thisWidget.dom.input = slider;
+    //thisWidget.updateSliderBackground();
   }
 
   parseValue(value) {
