@@ -24,15 +24,6 @@ class Booking {
         const openHour = settings.hours.open;
         const closeHour = settings.hours.close;
 
-        // zaokrąglić do trzech
-
-        // console.log('colors', colors);
-        // console.log('date', date);
-        console.log('booked', booked);
-        // console.log('typeof(booked)', typeof(booked));
-        // console.log('openHour', openHour);
-        // console.log('closeHour', closeHour);
-
         for (let time = openHour; time < closeHour; time += .5) {
             console.log('time', time);
             const bookedTables = booked[time] || [];
@@ -41,9 +32,6 @@ class Booking {
             let color = '#0f0';
             if (count === 2) color = '#ff0'
             else if (count >= 3) color = '#f00'
-
-            // console.log('time - openHour', time, openHour, time-openHour);
-            // console.log('closeHour - openHour', closeHour, openHour, closeHour - openHour);
 
             const partialStart = time - openHour;
             const partialStart2 = closeHour - openHour;
@@ -56,7 +44,7 @@ class Booking {
             colors.push(`${color} ${start}%, ${color} ${end}%`);
             console.log('partialEnd', partialEnd);
 
-        };
+        }
         return colors.join(', ');
     }
 
