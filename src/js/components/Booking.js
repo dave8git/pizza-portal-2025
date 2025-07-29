@@ -158,7 +158,7 @@ class Booking {
 
         //thisBooking.clearSelected();
 
-        if (isSelected) {
+        if (isSelected) { // remove class
             tableElement.classList.remove('selected');
             //thisBooking.dom.selectedTable = tableNumber;
             thisBooking.selectedTables = thisBooking.selectedTables.filter(t => t !== tableNumber);
