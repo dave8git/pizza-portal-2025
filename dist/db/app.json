@@ -275,9 +275,9 @@
       "starters": []
     },
     {
-      "date": "2025-07-30",
+      "date": "2025-07-29",
       "hour": "12:00",
-      "table": 2,
+      "table": null,
       "duration": 1,
       "ppl": 1,
       "starters": [],
@@ -286,8 +286,8 @@
       "id": 2
     },
     {
-      "date": "2025-07-30",
-      "hour": "20:00",
+      "date": "2025-07-29",
+      "hour": "18:00",
       "table": 2,
       "duration": 1,
       "ppl": 1,
@@ -297,9 +297,9 @@
       "id": 3
     },
     {
-      "date": "2025-07-30",
-      "hour": "19:30",
-      "table": 2,
+      "date": "2025-07-29",
+      "hour": "12:00",
+      "table": null,
       "duration": 1,
       "ppl": 1,
       "starters": [],
@@ -308,9 +308,9 @@
       "id": 4
     },
     {
-      "date": "2025-07-30",
-      "hour": "20:00",
-      "table": 3,
+      "date": "2025-07-29",
+      "hour": "12:00",
+      "table": null,
       "duration": 1,
       "ppl": 1,
       "starters": [],
@@ -319,9 +319,9 @@
       "id": 5
     },
     {
-      "date": "2025-07-30",
+      "date": "2025-07-29",
       "hour": "12:00",
-      "table": 3,
+      "table": null,
       "duration": 1,
       "ppl": 1,
       "starters": [],
@@ -330,8 +330,8 @@
       "id": 6
     },
     {
-      "date": "2025-07-30",
-      "hour": "19:30",
+      "date": "2025-07-29",
+      "hour": "18:00",
       "table": 3,
       "duration": 1,
       "ppl": 1,
@@ -343,7 +343,7 @@
     {
       "date": "2025-07-29",
       "hour": "12:00",
-      "table": 2,
+      "table": null,
       "duration": 1,
       "ppl": 1,
       "starters": [],
@@ -353,8 +353,8 @@
     },
     {
       "date": "2025-07-29",
-      "hour": "22:00",
-      "table": 3,
+      "hour": "12:00",
+      "table": null,
       "duration": 1,
       "ppl": 1,
       "starters": [],
@@ -386,7 +386,7 @@
     },
     {
       "date": "2025-07-29",
-      "hour": "22:00",
+      "hour": "12:00",
       "table": 2,
       "duration": 1,
       "ppl": 1,
@@ -405,270 +405,6 @@
       "phone": "",
       "address": "",
       "id": 13
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "12:00",
-      "table": 1,
-      "duration": 1,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 14
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "22:00",
-      "table": 1,
-      "duration": 1,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 15
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "12:00",
-      "table": 1,
-      "duration": 1,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 16
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "12:00",
-      "table": 1,
-      "duration": 9,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 17
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "22:00",
-      "table": 1,
-      "duration": 9,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 18
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "12:00",
-      "table": 1,
-      "duration": 9,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 19
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "12:00",
-      "table": 1,
-      "duration": 3,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 20
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "22:00",
-      "table": 1,
-      "duration": 3,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 21
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "12:00",
-      "table": 1,
-      "duration": 3,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 22
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "12:00",
-      "table": null,
-      "duration": 1,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 23
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "20:30",
-      "table": 2,
-      "duration": 1,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 24
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "12:00",
-      "table": null,
-      "duration": 1,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 25
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "12:00",
-      "table": null,
-      "duration": 1,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 26
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "20:00",
-      "table": 3,
-      "duration": 1,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 27
-    },
-    {
-      "date": "2025-07-29",
-      "hour": "12:00",
-      "table": null,
-      "duration": 1,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 28
-    },
-    {
-      "date": "2025-07-30",
-      "hour": "12:00",
-      "table": null,
-      "duration": 2,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 29
-    },
-    {
-      "date": "2025-07-30",
-      "hour": "22:30",
-      "table": 2,
-      "duration": 2,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 30
-    },
-    {
-      "date": "2025-07-30",
-      "hour": "12:00",
-      "table": null,
-      "duration": 2,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 31
-    },
-    {
-      "date": "2025-07-30",
-      "hour": "12:00",
-      "table": null,
-      "duration": 2,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 32
-    },
-    {
-      "date": "2025-07-30",
-      "hour": "22:30",
-      "table": 3,
-      "duration": 2,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 33
-    },
-    {
-      "date": "2025-07-30",
-      "hour": "12:00",
-      "table": null,
-      "duration": 2,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 34
-    },
-    {
-      "date": "2025-07-30",
-      "hour": "12:00",
-      "table": 1,
-      "duration": 2,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 35
-    },
-    {
-      "date": "2025-07-30",
-      "hour": "22:30",
-      "table": 1,
-      "duration": 2,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 36
-    },
-    {
-      "date": "2025-07-30",
-      "hour": "12:00",
-      "table": 1,
-      "duration": 2,
-      "ppl": 1,
-      "starters": [],
-      "phone": "",
-      "address": "",
-      "id": 37
     }
   ]
 }
