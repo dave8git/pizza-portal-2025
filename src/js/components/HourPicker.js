@@ -13,6 +13,15 @@ class HourPicker extends BaseWidget {
     thisWidget.initPlugin();
   }
 
+  updateSliderBackground() {
+    const thisWidget = this;
+    const bookingInstance = window.bookingInstance; // Make sure it's globally accessible
+    if (!bookingInstance) return;
+
+    const gradient = bookingInstance.generateSliderColorSegments();
+    thisWidget.dom.input.style.background = `linear-gradient(to right, ${gradient})`;
+  }
+
   initPlugin() {
     const thisWidget = this;
     const slider = thisWidget.dom.input;
@@ -34,7 +43,7 @@ class HourPicker extends BaseWidget {
       connect: [true, false],
       tooltips: true,
       format: {
-        to: value =>  utils.numberToHour(value),//value.toFixed(2),
+        to: value => utils.numberToHour(value),//value.toFixed(2),
         from: value => parseFloat(value),
       },
     });
@@ -57,7 +66,7 @@ class HourPicker extends BaseWidget {
   }
 
   renderValue() {
-     const thisWidget = this;
+    const thisWidget = this;
     if (thisWidget.dom.output) {
       thisWidget.dom.output.innerHTML = utils.numberToHour(thisWidget.value); // show "12:30"
       // console.log(thisWidget.value);
